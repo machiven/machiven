@@ -47,7 +47,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
       overflow: hidden;
     }
     .header {
-      background: linear-gradient(135deg, #1a3a52 0%, #0f1f2e 100%);
+      background: linear-gradient(135deg, #26384f 0%, #1a2633 100%);
       padding: 40px 20px;
       text-align: center;
       color: white;
