@@ -560,13 +560,12 @@ if (quoteForm && modal) {
       return;
     }
 
-    // Send email via Edge Function
+    // Send email via Edge Function (public, no auth header needed)
     try {
       const response = await fetch('https://sggwlqpahbozwxbgyvnz.supabase.co/functions/v1/send-quote-email', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sb.auth.session()?.access_token || ''}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       });
