@@ -560,46 +560,35 @@ if (quoteForm && modal) {
       return;
     }
 
-    // Create professional HTML email body
-    const emailBody = `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MACHIVEN LLC - QUOTE REQUEST
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // Send email via Edge Function
+    try {
+      const response = await fetch('https://sggwlqpahbozwxbgyvnz.supabase.co/functions/v1/send-quote-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sb.auth.session()?.access_token || ''}`
+        },
+        body: JSON.stringify(payload)
+      });
 
-📋 CLIENT INFORMATION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Name:        ${payload.first_name || ''} ${payload.last_name || ''}
-📧 Email:       ${payload.email || ''}
-📞 Phone:       ${payload.phone || ''}
-🏢 Company:     ${payload.company || 'N/A'}
+      const result = await response.json();
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 REQUEST DETAILS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Type:           ${payload.type || ''}
-Product:        ${payload.product || 'General Inquiry'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💬 MESSAGE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-${payload.message || 'No additional message'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⏰ Submitted: ${new Date(payload.submitted_at).toLocaleString()}
-
-🔧 Machiven LLC - Industrial Machinery Solutions
-📧 admin@machiven.com | 📞 +1 (305) 897-6773
-🌐 https://machiven.com
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-`;
-
-    // Open mailto with formatted text
-    const subject = `🔧 Quote Request - ${payload.last_name || 'Client'} - ${payload.product || 'Inquiry'}`;
-    window.location.href = `mailto:admin@machiven.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-
-    alert(currentLang === 'en'
-      ? 'Your email client is opening with the quote information ready to send!'
-      : '¡Tu cliente de correo se está abriendo con la información lista para enviar!');
+      if (!response.ok) {
+        console.error('Email error:', result);
+        alert(currentLang === 'en'
+          ? 'The quote was saved but email sending failed. We will contact you shortly.'
+          : 'La cotización se guardó pero el email no se envió. Nos pondremos en contacto pronto.');
+      } else {
+        alert(currentLang === 'en'
+          ? 'Quote request sent! We will review it and contact you soon.'
+          : '¡Solicitud de cotización enviada! La revisaremos y nos pondremos en contacto pronto.');
+      }
+    } catch (emailError) {
+      console.error('Email send error:', emailError);
+      alert(currentLang === 'en'
+        ? 'The quote was saved but we could not send the email. Please try again or contact us directly.'
+        : 'La cotización se guardó pero no pudimos enviar el email. Por favor intenta de nuevo o contáctanos.');
+    }
     closeModal();
   });
 }
