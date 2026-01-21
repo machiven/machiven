@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machiven LLC - Industrial Machinery Sales, Sourcing & Repairs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <img src="assets/img/logo-color.png" alt="Machiven LLC logo" class="brand__logo">
+      </div>
+      <nav class="nav">
+        <a href="#services" data-i18n="navServices">Services</a>
+        <a href="#shop" data-i18n="navShop">Shop</a>
+        <a href="#repairs" data-i18n="navRepairs">Repairs</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="topbar__actions">
+        <div class="lang-switch" aria-label="Language switch">
+          <button class="lang-switch__btn is-active" data-lang="en">EN</button>
+          <button class="lang-switch__btn" data-lang="es">ES</button>
+        </div>
+        <button class="pill-button" data-open-quote data-i18n="ctaQuote">Get a quote</button>
+        <button class="pill-button pill-button--ghost" id="btnLogin" data-open-auth data-i18n="login">Log in</button>
+        <span id="authStatus" class="auth-status" style="display:none;"></span>
+        <button class="pill-button pill-button--ghost logout-button" id="btnLogout" data-i18n="logout" style="display:none;">Log out</button>
+        <a id="adminTabLink" href="#admin" target="_blank" class="pill-button pill-button--ghost" style="display:none;">Admin tab</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow" data-i18n="heroEyebrow">Industrial machinery solutions</p>
+          <h1 data-i18n="heroTitle">Buy, source, and repair heavy equipment with confidence.</h1>
+          <p class="lede" data-i18n="heroCopy">We supply in-stock machinery, find hard-to-source equipment, and provide expert repair services for industrial operations.</p>
+          <div class="hero__cta">
+            <button class="pill-button" data-open-quote data-i18n="ctaQuoteMain">Request a quote</button>
+            <a class="pill-button pill-button--ghost" href="https://wa.me/13058976773" target="_blank" rel="noopener" data-i18n="ctaWhatsApp">Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero__card">
+          <img src="assets/img/logo-dark.png" alt="Machiven LLC" style="max-width: 100%; height: auto;">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section__header">
+          <h2 data-i18n="servicesTitle">What we do</h2>
+          <p data-i18n="servicesCopy">Complete industrial machinery solutions tailored to your needs.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="card card--border">
+            <div class="card__icon">🛒</div>
+            <h3 data-i18n="service1Title">Buy Existing Machinery</h3>
+            <p data-i18n="service1Copy">Browse our inventory of inspected, in-stock industrial equipment ready for immediate delivery.</p>
+            <a href="#shop" class="link-arrow" data-i18n="service1Link">View shop →</a>
+          </article>
+          <article class="card card--border">
+            <div class="card__icon">🔍</div>
+            <h3 data-i18n="service2Title">Find & Source Equipment</h3>
+            <p data-i18n="service2Copy">Need a specific machine or part? We source hard-to-find equipment with full inspection reports.</p>
+            <button class="link-arrow" data-open-quote data-quote-type="find" data-i18n="service2Link">Request sourcing →</button>
+          </article>
+          <article class="card card--border">
+            <div class="card__icon">🔧</div>
+            <h3 data-i18n="service3Title">Repair & Maintenance</h3>
+            <p data-i18n="service3Copy">On-site and remote repair services, parts sourcing, and preventive maintenance for your fleet.</p>
+            <a href="#repairs" class="link-arrow" data-i18n="service3Link">Learn more →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="shop">
+      <div class="container">
+        <div class="section__header">
+          <h2 data-i18n="shopTitle">In-stock equipment</h2>
+          <p data-i18n="shopCopy">Inspected machinery available for immediate purchase and delivery.</p>
+        </div>
+        <div class="product-grid" id="publicProductsGrid">
+          <!-- Products loaded dynamically from Supabase -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="repairs">
+      <div class="container">
+        <div class="section__header">
+          <h2 data-i18n="repairsTitle">Repair & maintenance services</h2>
+          <p data-i18n="repairsCopy">Keep your equipment running with expert technical support.</p>
+        </div>
+        <div class="repair-grid">
+          <div class="repair-item">
+            <div class="repair-item__icon">⚙️</div>
+            <h3 data-i18n="repair1">On-site repairs & diagnostics</h3>
+            <p data-i18n="repair1Desc">Technicians dispatch to your facility for urgent breakdowns and scheduled maintenance.</p>
+          </div>
+          <div class="repair-item">
+            <div class="repair-item__icon">📦</div>
+            <h3 data-i18n="repair2">Parts sourcing & replacement</h3>
+            <p data-i18n="repair2Desc">We stock critical consumables and source OEM/aftermarket parts for fast turnaround.</p>
+          </div>
+          <div class="repair-item">
+            <div class="repair-item__icon">🛡️</div>
+            <h3 data-i18n="repair3">Preventive maintenance plans</h3>
+            <p data-i18n="repair3Desc">Scheduled inspections and service contracts to minimize downtime and extend equipment life.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 32px;">
+          <button class="pill-button" data-open-quote data-quote-type="repair" data-i18n="repairCta">Request repair quote</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="about">
+      <div class="container about">
+        <div class="about__text">
+          <p class="eyebrow" data-i18n="aboutEyebrow">About Machiven LLC</p>
+          <h2 data-i18n="aboutTitle">Field engineers who understand uptime.</h2>
+          <p data-i18n="aboutCopy">We blend procurement, technical inspection, and logistics so you get machinery that performs. From first call to installation and beyond, you work directly with engineers and technicians.</p>
+          <div class="about__meta">
+            <div>
+              <p class="meta__number">8+</p>
+              <p class="meta__label" data-i18n="metaYears">Years in heavy industry</p>
+            </div>
+            <div>
+              <p class="meta__number">120+</p>
+              <p class="meta__label" data-i18n="metaClients">Clients across United States</p>
+            </div>
+          </div>
+          <div class="address">
+            <p class="address__label" data-i18n="addressLabel">Contact us</p>
+            <p><a href="https://wa.me/13058976773" target="_blank" rel="noopener">+1 (305) 897-6773</a></p>
+            <p><a href="mailto:admin@machiven.com">admin@machiven.com</a></p>
+          </div>
+        </div>
+        <div class="about__gallery">
+          <div class="gallery__item gallery__item--large">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="Machinery" loading="lazy">
+          </div>
+          <div class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Factory floor" loading="lazy">
+          </div>
+          <div class="gallery__item">
+            <img src="https://images.unsplash.com/photo-1517341722434-9af9d5e6813c?auto=format&fit=crop&w=800&q=80" alt="Engineers" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-simple">
+        <div class="section__header" style="text-align: center;">
+          <h2 data-i18n="contactTitle">Ready to get started?</h2>
+          <p data-i18n="contactCopy">Request a quote for purchase, sourcing, or repairs.</p>
+        </div>
+        <div class="contact__channels">
+          <button class="pill-button" data-open-quote data-i18n="contactQuote">Get a quote</button>
+          <a class="pill-button pill-button--ghost" href="https://wa.me/13058976773" target="_blank" rel="noopener" data-i18n="contactChat">Chat on WhatsApp</a>
+          <a class="pill-button pill-button--ghost" href="mailto:admin@machiven.com" data-i18n="contactEmail">Email admin@machiven.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Admin Productos (protegido) -->
+  <section class="section" id="admin" style="display:none;">
+    <div class="container">
+      <div class="section__header">
+        <h2 data-i18n="adminTitle">Admin products</h2>
+        <p data-i18n="adminDesc">Manage shop items.</p>
+      </div>
+      <div id="adminGate" class="notice" data-i18n="adminNoAccess">Restricted area. Log in as admin.</div>
+
+      <div id="adminPanel" style="display:none;">
+        <form class="form" id="productForm">
+          <div class="field-row">
+            <label class="field">
+              <span data-i18n="productName">Name</span>
+              <input type="text" name="name" required>
+            </label>
+            <label class="field">
+              <span data-i18n="productPrice">Price</span>
+              <input type="number" step="0.01" name="price" id="priceInput">
+            </label>
+            <label class="field" style="flex-direction: row; align-items: center; gap: 8px;">
+              <input type="checkbox" id="showPriceCheckbox" checked style="width: auto;">
+              <span style="font-weight: 400;">Show price (unchecked = "Request quote for pricing")</span>
+            </label>
+          </div>
+          <label class="field">
+            <span data-i18n="productDesc">Description</span>
+            <textarea name="description" rows="3"></textarea>
+          </label>
+          <div class="field-row">
+            <label class="field">
+              <span data-i18n="productStatus">Status</span>
+              <select name="status">
+                <option value="in-stock">in-stock</option>
+                <option value="soon">soon</option>
+              </select>
+            </label>
+            <label class="field">
+              <span data-i18n="productOrder">Order</span>
+              <input type="number" name="sort_order" value="0">
+            </label>
+          </div>
+          <div class="field-row">
+            <label class="field">
+              <span data-i18n="productImageUrl">Image URL</span>
+              <input type="url" name="image_url">
+            </label>
+            <label class="field">
+              <span>Upload image</span>
+              <input type="file" id="productImageFile" accept="image/*">
+            </label>
+            <label class="field">
+              <span data-i18n="productSlug">Slug</span>
+              <input type="text" name="slug">
+            </label>
+          </div>
+          <button type="submit" class="pill-button" data-i18n="adminCreate">Create product</button>
+        </form>
+
+        <div style="margin-top:24px;">
+          <h3>Productos</h3>
+          <div id="adminProductsList" class="cards-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="brand">
+        <img src="assets/img/logo-white.png" alt="Machiven LLC logo" class="brand__logo" style="max-height: 60px;">
+      </div>
+      <div class="footer__links">
+        <a href="https://maps.google.com/?q=614+W+27th+ST,+Hialeah,+FL+33010" target="_blank" rel="noopener" class="footer-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          614 W 27th ST, Hialeah FL 33010
+        </a>
+        <a href="mailto:admin@machiven.com" class="footer-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          admin@machiven.com
+        </a>
+        <a href="tel:+13058976773" class="footer-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +1 (305) 897-6773
+        </a>
+        <a href="https://wa.me/13058976773" target="_blank" rel="noopener" data-i18n="navChat">WhatsApp</a>
+      </div>
+      <p class="footer__meta" data-i18n="footerCopy">Machiven LLC. Reliable machinery, expert service. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Modal Quote Form -->
+  <div class="modal" id="quoteModal">
+    <div class="modal__overlay" data-close-quote></div>
+    <div class="modal__content">
+      <button class="modal__close" data-close-quote aria-label="Close">&times;</button>
+      <h2 data-i18n="modalTitle">Request a quote</h2>
+      <p class="modal__subtitle" data-i18n="modalSubtitle">Fill out the form and we'll get back to you within 24 hours.</p>
+      
+      <form class="form" id="quoteForm" data-quote-form>
+        <label class="field">
+          <span data-i18n="formType">Type of request *</span>
+          <select name="type" required>
+            <option value="" data-i18n="formTypeSelect">Select type...</option>
+            <option value="existing-product" data-i18n="formTypeExisting">Existing product (from shop)</option>
+            <option value="find-product" data-i18n="formTypeFind">Find & source product</option>
+            <option value="repair" data-i18n="formTypeRepair">Repair service</option>
+          </select>
+        </label>
+
+        <div class="field-row">
+          <label class="field">
+            <span data-i18n="formFirstName">First name *</span>
+            <input type="text" name="firstName" required data-i18n-placeholder="formFirstNamePh">
+          </label>
+          <label class="field">
+            <span data-i18n="formLastName">Last name *</span>
+            <input type="text" name="lastName" required data-i18n-placeholder="formLastNamePh">
+          </label>
+        </div>
+
+        <div class="field-row">
+          <label class="field">
+            <span data-i18n="formEmail">Email *</span>
+            <input type="email" name="email" required data-i18n-placeholder="formEmailPh">
+          </label>
+          <label class="field">
+            <span data-i18n="formPhone">Phone *</span>
+            <input type="tel" name="phone" required data-i18n-placeholder="formPhonePh">
+          </label>
+        </div>
+
+        <label class="field">
+          <span data-i18n="formCompany">Company name (optional)</span>
+          <input type="text" name="company" data-i18n-placeholder="formCompanyPh">
+        </label>
+
+        <label class="field" id="productField" style="display: none;">
+          <span data-i18n="formProduct">Product of interest</span>
+          <input type="text" name="product" data-i18n-placeholder="formProductPh">
+        </label>
+
+        <label class="field">
+          <span data-i18n="formMessage">Message / Specifications *</span>
+          <textarea name="message" rows="4" required data-i18n-placeholder="formMessagePh"></textarea>
+        </label>
+
+        <button type="submit" class="pill-button pill-button--full" data-i18n="formSubmit">Send quote request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Auth -->
+  <div class="modal" id="authModal" style="display:none;">
+    <div class="modal__overlay" data-close-auth></div>
+    <div class="modal__content">
+      <button class="modal__close" data-close-auth aria-label="Close">&times;</button>
+      <h2 data-i18n="authTitle">Sign in</h2>
+      <form class="form" id="authForm">
+        <label class="field">
+          <span data-i18n="authUsername">Username</span>
+          <input type="text" name="username" required>
+        </label>
+        <label class="field">
+          <span data-i18n="authPassword">Password</span>
+          <input type="password" name="password" required>
+        </label>
+        <div class="field-row">
+          <button type="submit" class="pill-button" data-i18n="authSignIn">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Supabase UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.10/dist/umd/supabase.js"></script>
+  <!-- PDF Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

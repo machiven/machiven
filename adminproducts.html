@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machiven Admin Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <img src="assets/img/logo-color.png" alt="Machiven LLC logo" class="brand__logo">
+      </div>
+      <nav class="nav">
+        <a href="/" data-i18n="navServices">Home</a>
+      </nav>
+      <div class="topbar__actions">
+        <div class="lang-switch" aria-label="Language switch">
+          <button class="lang-switch__btn is-active" data-lang="en">EN</button>
+          <button class="lang-switch__btn" data-lang="es">ES</button>
+        </div>
+        <button class="pill-button" id="btnLogin" data-open-auth data-i18n="login">Log in</button>
+        <span id="authStatus" class="auth-status" style="margin-left:8px;"></span>
+        <button class="pill-button pill-button--ghost" id="btnLogout" data-i18n="logout" style="display:none;">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="admin">
+      <div class="container">
+        <div class="section__header">
+          <h2 data-i18n="adminTitle">Admin products</h2>
+          <p data-i18n="adminDesc">Manage shop items.</p>
+        </div>
+        <div id="adminGate" class="notice" data-i18n="adminNoAccess">Restricted area. Log in as admin.</div>
+
+        <div id="adminPanel" style="display:none;">
+          <form class="form" id="productForm">
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="productName">Name</span>
+                <input type="text" name="name" required>
+              </label>
+              <label class="field">
+                <span data-i18n="productPrice">Price</span>
+                <input type="number" step="0.01" name="price">
+              </label>
+            </div>
+            <label class="field">
+              <span data-i18n="productDesc">Description</span>
+              <textarea name="description" rows="3"></textarea>
+            </label>
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="productStatus">Status</span>
+                <select name="status">
+                  <option value="in-stock">in-stock</option>
+                  <option value="soon">soon</option>
+                </select>
+              </label>
+              <label class="field">
+                <span data-i18n="productOrder">Order</span>
+                <input type="number" name="sort_order" value="0">
+              </label>
+            </div>
+            <div class="field-row">
+              <label class="field">
+                <span data-i18n="productImageUrl">Image URL</span>
+                <input type="url" name="image_url">
+              </label>
+              <label class="field">
+                <span>Upload image</span>
+                <input type="file" id="productImageFile" accept="image/*">
+              </label>
+              <label class="field">
+                <span data-i18n="productSlug">Slug</span>
+                <input type="text" name="slug">
+              </label>
+            </div>
+            <button type="submit" class="pill-button" data-i18n="adminCreate">Create product</button>
+          </form>
+
+          <div style="margin-top:24px;">
+            <h3>Productos</h3>
+            <div id="adminProductsList" class="cards-grid"></div>
+          </div>
+          <div style="margin-top:24px;">
+            <button class="pill-button pill-button--ghost" id="btnLogout" data-i18n="logout">Log out</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Auth -->
+  <div class="modal" id="authModal" style="display:none;">
+    <div class="modal__overlay" data-close-auth></div>
+    <div class="modal__content">
+      <button class="modal__close" data-close-auth aria-label="Close">&times;</button>
+      <h2 data-i18n="authTitle">Sign in</h2>
+      <form class="form" id="authForm">
+        <label class="field">
+          <span data-i18n="authUsername">Username</span>
+          <input type="text" name="username" required>
+        </label>
+        <label class="field">
+          <span data-i18n="authPassword">Password</span>
+          <input type="password" name="password" required>
+        </label>
+        <div class="field-row">
+          <button type="submit" class="pill-button" data-i18n="authSignIn">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Supabase UMD -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.10/dist/umd/supabase.js"></script>
+  <!-- PDF Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
