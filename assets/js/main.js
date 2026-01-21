@@ -578,9 +578,10 @@ if (quoteForm && modal) {
           ? 'The quote was saved but email sending failed. We will contact you shortly.'
           : 'La cotización se guardó pero el email no se envió. Nos pondremos en contacto pronto.');
       } else {
+        const confirmationEmail = payload.email || 'your email';
         alert(currentLang === 'en'
-          ? 'Quote request sent! We will review it and contact you soon.'
-          : '¡Solicitud de cotización enviada! La revisaremos y nos pondremos en contacto pronto.');
+          ? `Quote request submitted. Check ${confirmationEmail} for your confirmation.`
+          : `Solicitud enviada. Revisa ${confirmationEmail} para tu confirmación.`);
       }
     } catch (emailError) {
       console.error('Email send error:', emailError);

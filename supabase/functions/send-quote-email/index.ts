@@ -256,7 +256,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: "noreply@machiven.com",
-        to: "admin+quote@machiven.com",
+        to: ["admin+quote@machiven.com", data.email],
         subject: `🔧 Quote Request - ${data.last_name} - ${data.product || "Inquiry"}`,
         html: htmlContent,
         reply_to: data.email,
