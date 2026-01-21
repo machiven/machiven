@@ -72,10 +72,10 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     .section-title {
       font-size: 16px;
       font-weight: 600;
-      color: #2596be;
+      color: #26384f;
       margin-bottom: 15px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #2596be;
+      border-bottom: 2px solid #26384f;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -102,7 +102,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     }
     .message-box {
       background-color: #f9f9f9;
-      border-left: 4px solid #2596be;
+      border-left: 4px solid #26384f;
       padding: 15px;
       margin: 15px 0;
       border-radius: 4px;
@@ -128,7 +128,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     }
     .badge {
       display: inline-block;
-      background-color: #2596be;
+      background-color: #26384f;
       color: white;
       padding: 6px 12px;
       border-radius: 20px;
