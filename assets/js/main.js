@@ -560,70 +560,46 @@ if (quoteForm && modal) {
       return;
     }
 
-    // Generate PDF with logo and product image if available
-    const pdfContent = `
-      <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; color: #333;">
-        <div style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #0066cc; padding-bottom: 20px;">
-          <img src="assets/img/logo-color.png" alt="Machiven LLC" style="max-height: 80px; margin-bottom: 10px;">
-          <h1 style="margin: 0; color: #0066cc; font-size: 28px;">QUOTE REQUEST</h1>
-        </div>
-        
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #0066cc; margin-bottom: 10px;">Client Information</h3>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 5px;"><strong>Name:</strong></td><td>${payload.first_name || ''} ${payload.last_name || ''}</td></tr>
-            <tr><td style="padding: 5px;"><strong>Email:</strong></td><td>${payload.email || ''}</td></tr>
-            <tr><td style="padding: 5px;"><strong>Phone:</strong></td><td>${payload.phone || ''}</td></tr>
-            <tr><td style="padding: 5px;"><strong>Company:</strong></td><td>${payload.company || 'N/A'}</td></tr>
-          </table>
-        </div>
+    // Create professional HTML email body
+    const emailBody = `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MACHIVEN LLC - QUOTE REQUEST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #0066cc; margin-bottom: 10px;">Request Details</h3>
-          <p><strong>Type:</strong> ${payload.type || ''}</p>
-          <p><strong>Product:</strong> ${payload.product || 'General Inquiry'}</p>
-        </div>
+📋 CLIENT INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 Name:        ${payload.first_name || ''} ${payload.last_name || ''}
+📧 Email:       ${payload.email || ''}
+📞 Phone:       ${payload.phone || ''}
+🏢 Company:     ${payload.company || 'N/A'}
 
-        ${payload.product ? `
-        <div style="margin-bottom: 30px; background-color: #f9f9f9; padding: 15px; border-left: 4px solid #0066cc;">
-          <h3 style="color: #0066cc; margin-top: 0;">Product Information</h3>
-          <p><em>${payload.product}</em></p>
-        </div>
-        ` : ''}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 REQUEST DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type:           ${payload.type || ''}
+Product:        ${payload.product || 'General Inquiry'}
 
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #0066cc; margin-bottom: 10px;">Message</h3>
-          <p style="line-height: 1.6; white-space: pre-wrap;">${payload.message || 'No additional message'}</p>
-        </div>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 MESSAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${payload.message || 'No additional message'}
 
-        <div style="border-top: 2px solid #0066cc; padding-top: 20px; text-align: center; color: #666; font-size: 12px;">
-          <p>Submitted: ${new Date(payload.submitted_at).toLocaleString()}</p>
-          <p style="margin-top: 10px;">Machiven LLC - Industrial Machinery Solutions</p>
-          <p>admin@machiven.com | +1 (305) 897-6773</p>
-        </div>
-      </div>
-    `;
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⏰ Submitted: ${new Date(payload.submitted_at).toLocaleString()}
 
-    // Generate PDF
-    const opt = {
-      margin: 10,
-      filename: `quote-${payload.last_name || 'request'}-${new Date().getTime()}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
-    };
+🔧 Machiven LLC - Industrial Machinery Solutions
+📧 admin@machiven.com | 📞 +1 (305) 897-6773
+🌐 https://machiven.com
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`;
 
-    window.html2pdf().set(opt).from(pdfContent).save();
-
-    // Open mailto after a short delay
-    setTimeout(() => {
-      const mailtoText = `Quote Request from ${payload.first_name || ''} ${payload.last_name || ''}. Please find the attached quote in the downloaded PDF.`;
-      window.location.href = `mailto:admin+quote@machiven.com?subject=Quote%20Request%20-%20${encodeURIComponent(payload.last_name || 'Client')}&body=${encodeURIComponent(mailtoText)}`;
-    }, 500);
+    // Open mailto with formatted text
+    const subject = `🔧 Quote Request - ${payload.last_name || 'Client'} - ${payload.product || 'Inquiry'}`;
+    window.location.href = `mailto:admin@machiven.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
     alert(currentLang === 'en'
-      ? 'Quote PDF downloaded. Your email client is opening. Please attach the PDF and send.'
-      : 'PDF descargado. Tu cliente de correo está abriendo. Por favor adjunta el PDF y envía.');
+      ? 'Your email client is opening with the quote information ready to send!'
+      : '¡Tu cliente de correo se está abriendo con la información lista para enviar!');
     closeModal();
   });
 }
