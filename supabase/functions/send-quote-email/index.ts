@@ -47,7 +47,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
       overflow: hidden;
     }
     .header {
-      background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+      background: linear-gradient(135deg, #1a3a52 0%, #0f1f2e 100%);
       padding: 40px 20px;
       text-align: center;
       color: white;
@@ -72,10 +72,10 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     .section-title {
       font-size: 16px;
       font-weight: 600;
-      color: #0066cc;
+      color: #00d4ff;
       margin-bottom: 15px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #0066cc;
+      border-bottom: 2px solid #00d4ff;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -102,7 +102,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     }
     .message-box {
       background-color: #f9f9f9;
-      border-left: 4px solid #0066cc;
+      border-left: 4px solid #00d4ff;
       padding: 15px;
       margin: 15px 0;
       border-radius: 4px;
@@ -128,8 +128,8 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     }
     .badge {
       display: inline-block;
-      background-color: #0066cc;
-      color: white;
+      background-color: #00d4ff;
+      color: #1a3a52;
       padding: 6px 12px;
       border-radius: 20px;
       font-size: 12px;
