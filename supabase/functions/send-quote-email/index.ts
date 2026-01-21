@@ -148,9 +148,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
 </head>
 <body>
   <div class="container">
-    <div class="header" style="background-image: url('https://machiven.com/assets/img/Twitter%20cover%20%20picture.jpg'); background-size: cover; background-position: center; padding: 60px 20px;">
-      <img src="https://machiven.com/assets/img/logo-color.png" alt="Machiven LLC" style="max-height: 60px; margin-bottom: 15px;">
-      <p class="header-subtitle">Industrial Machinery Solutions</p>
+    <div class="header" style="background-image: url('https://machiven.com/assets/img/Twitter%20cover%20%20picture.jpg'); background-size: cover; background-position: center; min-height: 200px;">
     </div>
 
     <div class="content">
