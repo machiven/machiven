@@ -72,10 +72,10 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     .section-title {
       font-size: 16px;
       font-weight: 600;
-      color: #00d4ff;
+      color: #2596be;
       margin-bottom: 15px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #00d4ff;
+      border-bottom: 2px solid #2596be;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -102,7 +102,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     }
     .message-box {
       background-color: #f9f9f9;
-      border-left: 4px solid #00d4ff;
+      border-left: 4px solid #2596be;
       padding: 15px;
       margin: 15px 0;
       border-radius: 4px;
@@ -128,8 +128,8 @@ const generateEmailHTML = (data: QuoteRequest): string => {
     }
     .badge {
       display: inline-block;
-      background-color: #00d4ff;
-      color: #1a3a52;
+      background-color: #2596be;
+      color: white;
       padding: 6px 12px;
       border-radius: 20px;
       font-size: 12px;
@@ -148,7 +148,7 @@ const generateEmailHTML = (data: QuoteRequest): string => {
 </head>
 <body>
   <div class="container">
-    <div class="header" style="background-image: url('https://machiven.com/assets/img/Twitter%20cover%20%20picture.jpg'); background-size: cover; background-position: center; min-height: 200px;">
+    <div class="header" style="background-image: url('https://machiven.com/assets/img/Twitter%20cover%20%20picture.jpg'); background-size: cover; background-position: center; min-height: 120px;">
     </div>
 
     <div class="content">
